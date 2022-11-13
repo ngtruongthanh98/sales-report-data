@@ -1,11 +1,11 @@
 import React from 'react';
 import './styles.scss';
-import HorizontalBarChart from '../../components/Charts/HorizontalBarChart';
+import MultiTypeChart from '../../components/Charts/MultiTypeChart';
 
 const Analysis = () => {
   return (
     <div>
-      <HorizontalBarChart />
+      <MultiTypeChart />
     </div>
   );
 };
