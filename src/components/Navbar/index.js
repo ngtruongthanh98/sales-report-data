@@ -6,11 +6,11 @@ const Navbar = () => {
   return (
     <nav className="nav">
       <Link to="/" className="site-title">
-        Site Name
+        Sales Management Tool
       </Link>
       <ul>
-        <CustomLink to="/sales">Sales</CustomLink>
-        <CustomLink to="/about">About</CustomLink>
+        <CustomLink to="/sale-person">Sale Person</CustomLink>
+        <CustomLink to="/analysis">Analysis</CustomLink>
       </ul>
     </nav>
   );
