@@ -1,8 +1,13 @@
 import React from 'react';
 import './styles.scss';
+import HorizontalBarChart from '../../components/Charts/HorizontalBarChart';
 
-const About = () => {
-  return <div>About</div>;
+const Analysis = () => {
+  return (
+    <div>
+      <HorizontalBarChart />
+    </div>
+  );
 };
 
-export default About;
+export default Analysis;
