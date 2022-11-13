@@ -1,0 +1,24 @@
+.analysis-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .row {
+    display: flex;
+
+    .chart-item-50 {
+      width: 50%;
+      margin: 0 10px;
+    }
+
+    .chart-item-100 {
+      width: 100%;
+      margin: 0 10px;
+    }
+
+    &.single {
+      justify-content: center;
+    }
+  }
+}

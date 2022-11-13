@@ -18,7 +18,7 @@ const NormalButton = (props) => {
 };
 
 NormalButton.defaultProps = {
-  buttonName: '',
+  buttonName: 'Button name',
   onClick: () => {},
   isWhite: false,
   className: '',

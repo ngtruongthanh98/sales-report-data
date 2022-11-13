@@ -1,11 +1,26 @@
 import React from 'react';
 import './styles.scss';
-import MultiTypeChart from '../../components/Charts/MultiTypeChart';
+import LineChart from '../../components/Charts/LineChart';
+import VerticalBarChart from '../../components/Charts/VerticalBarChart';
 
 const Analysis = () => {
   return (
-    <div>
-      <MultiTypeChart />
+    <div className="analysis-page">
+      <div className="row">
+        <div className="chart-item-50">
+          <LineChart />
+        </div>
+
+        <div className="chart-item-50">
+          <VerticalBarChart />
+        </div>
+      </div>
+
+      <div className="row single">
+        <div className="chart-item-50">
+          <LineChart />
+        </div>
+      </div>
     </div>
   );
 };
