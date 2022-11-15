@@ -51,4 +51,9 @@ const LineChart = () => {
   return <Line options={options} data={data} />;
 };
 
+LineChart.defaultProps = {
+  dataArray: [12, 19, 3, 5, 2, 3],
+  labelArray: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+};
+
 export default LineChart;

@@ -52,4 +52,9 @@ const VerticalBarChart = () => {
   );
 };
 
+VerticalBarChart.defaultProps = {
+  dataArray: [12, 19, 3, 5, 2, 3],
+  labelArray: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+};
+
 export default VerticalBarChart;

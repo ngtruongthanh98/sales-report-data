@@ -5,13 +5,13 @@ import './styles.scss';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PieChart = () => {
+const PieChart = (props) => {
   const data = {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    labels: props.labelArray,
     datasets: [
       {
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        data: props.dataArray,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -34,6 +34,11 @@ const PieChart = () => {
   };
 
   return <Pie data={data} className="pieChart" />;
+};
+
+PieChart.defaultProps = {
+  dataArray: [12, 19, 3, 5, 2, 3],
+  labelArray: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
 };
 
 export default PieChart;
