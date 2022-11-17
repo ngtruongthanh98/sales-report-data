@@ -10,6 +10,7 @@ const Analysis = () => {
 
   useEffect(() => {
     getChartData().then((res) => {
+      console.log(res.data);
       setDataChart(res.data);
     });
   }, []);

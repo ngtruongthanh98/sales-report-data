@@ -28,10 +28,19 @@ const LineChart = () => {
     },
   };
 
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  // const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
   const data = {
-    labels,
+    labels: [
+      {
+        label: 'Dataset 1',
+        data: [""]
+      },
+      {
+        label: 'Dataset 2',
+        data: [""]
+      },
+    ],
     datasets: [
       {
         label: 'Dataset 1',
