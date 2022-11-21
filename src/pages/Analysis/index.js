@@ -36,6 +36,13 @@ const Analysis = () => {
         <div className="chart-item-50">
           <LineChart dataArray={dataLineChart.data} labelArray={dataLineChart.label} />
         </div>
+
+        <div className="chart-item-50">
+          <VerticalBarChart
+            dataArray={dataVerticalBarChart.data}
+            labelArray={dataVerticalBarChart.label}
+          />
+        </div>
       </div>
     </div>
   );
