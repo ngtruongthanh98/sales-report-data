@@ -13,7 +13,7 @@ import faker from 'faker';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const VerticalBarChart = () => {
+const VerticalBarChart = (props) => {
   const options = {
     responsive: true,
     plugins: {
@@ -27,22 +27,17 @@ const VerticalBarChart = () => {
     },
   };
 
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
   const data = {
-    labels,
-    datasets: [
-      {
-        label: 'Dataset 1',
-        data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-      {
-        label: 'Dataset 2',
-        data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      },
-    ],
+    labels: props.labelArray,
+    datasets: props.dataArray.map((data, index) => {
+      return {
+        label: props.labelArray[index],
+        // Mock data
+        data: props.labelArray.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
+        borderColor: props.borderColorArray[index],
+        backgroundColor: props.backgroundColorArray[index],
+      };
+    }),
   };
 
   return (
@@ -55,6 +50,22 @@ const VerticalBarChart = () => {
 VerticalBarChart.defaultProps = {
   dataArray: [12, 19, 3, 5, 2, 3],
   labelArray: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  borderColorArray: [
+    'rgb(255, 99, 132)',
+    'rgb(53, 162, 235)',
+    'rgb(255, 205, 86)',
+    'rgb(75, 192, 192)',
+    'rgb(153, 102, 255)',
+    'rgb(255, 159, 64)',
+  ],
+  backgroundColorArray: [
+    'rgba(255, 99, 132, 0.5)',
+    'rgba(53, 162, 235, 0.5)',
+    'rgba(255, 205, 86, 0.5)',
+    'rgba(75, 192, 192, 0.5)',
+    'rgba(153, 102, 255, 0.5)',
+    'rgba(255, 159, 64, 0.5)',
+  ],
 };
 
 export default VerticalBarChart;
