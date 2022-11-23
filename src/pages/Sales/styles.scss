@@ -1,0 +1,19 @@
+.sale-page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &__body {
+    width: 400px;
+    margin-top: 24px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+      margin-bottom: 10px;
+    }
+  }
+}
