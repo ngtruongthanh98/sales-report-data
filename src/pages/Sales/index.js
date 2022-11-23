@@ -4,78 +4,45 @@ import DebounceSelect from '../../components/DebounceSelect';
 import LineChart from '../../components/Charts/LineChart';
 import PieChart from '../../components/Charts/PieChart';
 
-import { Space, Table, Tag } from 'antd';
+import { Table } from 'antd';
 
 const columns = [
   {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
+    title: 'ID',
+    dataIndex: 'id',
+    key: 'id',
+  },
+  {
+    title: 'Territory',
+    dataIndex: 'territory',
+    key: 'territory',
     render: (text) => <a>{text}</a>,
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: 'StoreNum',
+    dataIndex: 'storeNum',
+    key: 'storeNum',
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
+    title: 'CustomerNum',
+    dataIndex: 'customerNum',
+    key: 'customerNum',
   },
   {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: (_, { tags }) => (
-      <>
-        {tags.map((tag) => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
-          if (tag === 'loser') {
-            color = 'volcano';
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
+    title: 'OrderNum',
+    dataIndex: 'orderNum',
+    key: 'orderNum',
   },
-  // {
-  //   title: 'Action',
-  //   key: 'action',
-  //   render: (_, record) => (
-  //     <Space size="middle">
-  //       <a>Invite {record.name}</a>
-  //       <a>Delete</a>
-  //     </Space>
-  //   ),
-  // },
 ];
 const data = [
   {
     key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
+    id: 32,
+    territory: 'United Kingdom',
+    storeNum: 34,
+    customerNum: 1000,
+    orderNum: 12000,
   },
-  // {
-  //   key: '2',
-  //   name: 'Jim Green',
-  //   age: 42,
-  //   address: 'London No. 1 Lake Park',
-  //   tags: ['loser'],
-  // },
-  // {
-  //   key: '3',
-  //   name: 'Joe Black',
-  //   age: 32,
-  //   address: 'Sidney No. 1 Lake Park',
-  //   tags: ['cool', 'teacher'],
-  // },
 ];
 
 const Sales = () => {
@@ -110,7 +77,8 @@ const Sales = () => {
             width: '100%',
           }}
           onSelect={(value) => {
-            console.log('value', value);
+            setValue(value);
+            console.log('select value', value);
           }}
           className="select-input"
         />

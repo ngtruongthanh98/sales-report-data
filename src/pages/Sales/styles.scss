@@ -29,17 +29,20 @@
       margin-top: 32px;
 
       &__row {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 800px;
       }
 
       &__col {
-        width: 100%;
-        display: flex;
-        justify-content: center;
+        display: grid;
+        grid-template-rows: 1fr;
         align-items: center;
+        justify-content: center;
+
+        .pieChart {
+          width: 400px !important;
+          height: 400px !important;
+        }
       }
     }
   }

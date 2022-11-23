@@ -30,10 +30,10 @@ const DebounceSelect = ({ fetchOptions, debounceTimeout = 800, ...props }) => {
   console.log(options);
   if (options.length === 0) {
     // Example condition, its not fully handling
-    options.push({
-      label: 'Anees 1',
-      value: 'Anees',
-    });
+    // options.push({
+    //   label: 'Anees 1',
+    //   value: 'Anees',
+    // });
   }
 
   console.log(options);
