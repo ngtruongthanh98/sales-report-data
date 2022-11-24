@@ -3,6 +3,7 @@ import './styles.scss';
 import DebounceSelect from '../../components/DebounceSelect';
 import LineChart from '../../components/Charts/LineChart';
 import PieChart from '../../components/Charts/PieChart';
+import { getSalePerson } from '../../services/charts';
 
 import { Table } from 'antd';
 
@@ -48,16 +49,33 @@ const data = [
 const Sales = () => {
   const [value, setValue] = React.useState([]);
 
-  async function fetchUserList(username) {
-    console.log('fetching user', username);
-    return fetch('https://randomuser.me/api/?results=5')
-      .then((response) => response.json())
-      .then((body) =>
-        body.results.map((user) => ({
-          label: `${user.name.first} ${user.name.last}`,
-          value: user.login.username,
-        }))
-      );
+  // async function fetchUserList(username) {
+  //   console.log('fetching user', username);
+  //   return fetch('https://randomuser.me/api/?results=5')
+  //     .then((response) => response.json())
+  //     .then((body) =>
+  //       body.results.map((user) => ({
+  //         label: `${user.name.first} ${user.name.last}`,
+  //         value: user.login.username,
+  //       }))
+  //     );
+  // }
+
+  async function fetchPersonData(personId) {
+    console.log('fetching person', personId);
+    return getSalePerson(personId).then((res) => {
+      console.log(res.data);
+
+      // return res.data;
+
+      const returnedValue = [
+        {
+          label: `${res.data.id}`,
+          value: res.data,
+        },
+      ];
+      return returnedValue;
+    });
   }
 
   return (
@@ -69,7 +87,7 @@ const Sales = () => {
           mode="multiple"
           value={value}
           placeholder="Select users"
-          fetchOptions={fetchUserList}
+          fetchOptions={fetchPersonData}
           onChange={(newValue) => {
             setValue(newValue);
           }}
@@ -96,7 +114,7 @@ const Sales = () => {
 
           <div className="data-container__row">
             <div className="data-container__col">
-              <Table columns={columns} dataSource={data} />
+              <Table columns={columns} dataSource={value} />
             </div>
 
             <div className="data-container__col">
