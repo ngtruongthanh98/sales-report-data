@@ -22,22 +22,31 @@ const VerticalBarChart = (props) => {
       },
       title: {
         display: true,
-        text: 'Chart.js Bar Chart',
+        text: props.textTitle,
       },
     },
   };
 
   const data = {
     labels: props.labelArray,
-    datasets: props.dataArray.map((data, index) => {
-      return {
-        label: props.labelArray[index],
-        // Mock data
-        data: props.labelArray.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-        borderColor: props.borderColorArray[index],
-        backgroundColor: props.backgroundColorArray[index],
-      };
-    }),
+    // datasets: props.dataArray.map((data, index) => {
+    //   return {
+    //     label: props.labelArray[index],
+    //     // Mock data
+    //     data: props.labelArray.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
+    //     borderColor: props.borderColorArray[index],
+    //     backgroundColor: props.backgroundColorArray[index],
+    //   };
+    // }),
+
+    datasets: [
+      {
+        label: props.textCom,
+        data: props.dataArray,
+        borderColor: props.borderColorArray,
+        backgroundColor: props.backgroundColorArray,
+      }
+    ]
   };
 
   return (
