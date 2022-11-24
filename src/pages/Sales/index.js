@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './styles.scss';
 import DebounceSelect from '../../components/DebounceSelect';
 import LineChart from '../../components/Charts/LineChart';
@@ -48,6 +48,14 @@ const data = [
 
 const Sales = () => {
   const [value, setValue] = React.useState([]);
+
+  // useEffect is used to call API, dependency array [value] is used to call API when value changes
+
+  useEffect(() => {
+    if (value?.id) {
+      // call API chart
+    }
+  }, [value]);
 
   // async function fetchUserList(username) {
   //   console.log('fetching user', username);
