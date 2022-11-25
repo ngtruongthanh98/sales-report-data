@@ -3,6 +3,7 @@ import './styles.scss';
 import DebounceSelect from '../../components/DebounceSelect';
 import LineChart from '../../components/Charts/LineChart';
 import PieChart from '../../components/Charts/PieChart';
+import { getSalePerson } from '../../services/charts';
 
 import { Table } from 'antd';
 import { getSalesPersonID } from '../../services/charts';
@@ -50,16 +51,41 @@ const Sales = () => {
   const [value, setValue] = React.useState([]);
   const [value1, setValue1] = React.useState([]);
 
-  async function fetchUserList(username) {
-    console.log('fetching user', username);
-    return fetch('https://randomuser.me/api/?results=5')
-      .then((response) => response.json())
-      .then((body) =>
-        body.results.map((user) => ({
-          label: `${user.name.first} ${user.name.last}`,
-          value: user.login.username,
-        }))
-      );
+  // useEffect is used to call API, dependency array [value] is used to call API when value changes
+
+  useEffect(() => {
+    if (value?.id) {
+      // call API chart
+    }
+  }, [value]);
+
+  // async function fetchUserList(username) {
+  //   console.log('fetching user', username);
+  //   return fetch('https://randomuser.me/api/?results=5')
+  //     .then((response) => response.json())
+  //     .then((body) =>
+  //       body.results.map((user) => ({
+  //         label: `${user.name.first} ${user.name.last}`,
+  //         value: user.login.username,
+  //       }))
+  //     );
+  // }
+
+  async function fetchPersonData(personId) {
+    console.log('fetching person', personId);
+    return getSalePerson(personId).then((res) => {
+      console.log(res.data);
+
+      // return res.data;
+
+      const returnedValue = [
+        {
+          label: `${res.data.id}`,
+          value: res.data,
+        },
+      ];
+      return returnedValue;
+    });
   }
 
   useEffect(() => {
@@ -79,7 +105,7 @@ const Sales = () => {
           mode="multiple"
           value={value}
           placeholder="Select users"
-          fetchOptions={fetchUserList}
+          fetchOptions={fetchPersonData}
           onChange={(newValue) => {
             setValue(newValue);
           }}
