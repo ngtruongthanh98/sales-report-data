@@ -5,6 +5,11 @@ export const getChartData = () => {
   return axios.get(url);
 };
 
+export const getChartDataByID = (id) => {
+  const url = 'http://localhost:1323/analysis/category/' + id;
+  return axios.get(url);
+};
+
 export const getCusChartData = () => {
   const url = 'http://localhost:1323/analysis/rank/cus/';
   return axios.get(url);
@@ -17,6 +22,11 @@ export const getOrdChartData = () => {
 
 export const getQuotaData = () => {
   const url = 'http://localhost:1323/analysis/salesquota/ord/';
+  return axios.get(url);
+};
+
+export const getQuotaDataByID = (id) => {
+  const url = 'http://localhost:1323/analysis/salesquota/ord/' + id;
   return axios.get(url);
 };
 

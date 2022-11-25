@@ -23,7 +23,7 @@ const LineChart = (props) => {
       },
       title: {
         display: true,
-        text: 'Top 10 Sales Quota History',
+        text: props.text,
       },
     },
   };
@@ -72,6 +72,10 @@ LineChart.defaultProps = {
     'rgb(75, 192, 192)',
     'rgb(153, 102, 255)',
     'rgb(255, 159, 64)',
+    'rgb(0, 0, 0)',
+    'rgb(10, 79, 21)',
+    'rgb(228, 142, 17)',
+    'rgb(156, 151, 143)',
   ],
   backgroundColorArray: [
     'rgba(255, 99, 132, 0.5)',
@@ -80,6 +84,10 @@ LineChart.defaultProps = {
     'rgba(75, 192, 192, 0.5)',
     'rgba(153, 102, 255, 0.5)',
     'rgba(255, 159, 64, 0.5)',
+    'rgba(0, 0, 0, 0.5)',
+    'rgba(10, 79, 21, 0.5)',
+    'rgba(228, 142, 17, 0.5)',
+    'rgba(156, 151, 143, 0.5',
   ],
 };
 

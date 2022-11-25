@@ -60,7 +60,7 @@ const Analysis = () => {
 
       <div className="row single">
         <div className="chart-item-50">
-          <LineChart dataArray={dataLineChart.data} labelArray={dataLineChart.label} idArray={dataLineChart.salesid} />
+          <LineChart dataArray={dataLineChart.data} labelArray={dataLineChart.label} idArray={dataLineChart.salesid} text={"Top 10 SalesQuota History"} />
         </div>
 
         <div className="chart-item-50">

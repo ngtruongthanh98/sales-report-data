@@ -3,10 +3,10 @@ import './styles.scss';
 import DebounceSelect from '../../components/DebounceSelect';
 import LineChart from '../../components/Charts/LineChart';
 import PieChart from '../../components/Charts/PieChart';
-import { getSalePerson } from '../../services/charts';
+import { getSalePerson } from '../../services/saleperson';
 
 import { Table } from 'antd';
-import { getSalesPersonID } from '../../services/charts';
+import { getChartDataByID, getQuotaDataByID, getSalesPersonID } from '../../services/charts';
 
 const columns = [
   {
@@ -50,6 +50,8 @@ const data = [
 const Sales = () => {
   const [value, setValue] = React.useState([]);
   const [value1, setValue1] = React.useState([]);
+  const [valueLine, setLine] = React.useState([]);
+  const [valuePie, setPie] = React.useState([]);
 
   // useEffect is used to call API, dependency array [value] is used to call API when value changes
 
@@ -59,29 +61,30 @@ const Sales = () => {
     }
   }, [value]);
 
-  // async function fetchUserList(username) {
-  //   console.log('fetching user', username);
-  //   return fetch('https://randomuser.me/api/?results=5')
-  //     .then((response) => response.json())
-  //     .then((body) =>
-  //       body.results.map((user) => ({
-  //         label: `${user.name.first} ${user.name.last}`,
-  //         value: user.login.username,
-  //       }))
-  //     );
-  // }
+  async function fetchUserList(username) {
+    console.log('fetching user', username);
+    return fetch('https://randomuser.me/api/?results=5')
+      .then((response) => response.json())
+      .then((body) =>
+        body.results.map((user) => ({
+          label: `${user.name.first} ${user.name.last}`,
+          value: user.login.username,
+        }))
+      );
+  }
 
   async function fetchPersonData(personId) {
     console.log('fetching person', personId);
     return getSalePerson(personId).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
 
       // return res.data;
+      
 
       const returnedValue = [
         {
           label: `${res.data.id}`,
-          value: res.data,
+          value: res.data.id,
         },
       ];
       return returnedValue;
@@ -89,12 +92,30 @@ const Sales = () => {
   }
 
   useEffect(() => {
-    getSalesPersonID(4).then((res) => {
+    getSalesPersonID(value.key).then((res) => {
       console.log(res.data);
       //setDataPieChart(res.data);
       setValue1([res.data])
     });
-  }, []);
+  }, [value]);
+
+  useEffect(() => {
+    getQuotaDataByID(value.key).then((res) => {
+      console.log(res.data);
+      //setDataPieChart(res.data);
+      setLine(res.data)
+    });
+  }, [value]);
+
+  useEffect(() => {
+    getChartDataByID(value.key).then((res) => {
+      console.log(res.data);
+      //setDataPieChart(res.data);
+      setPie(res.data)
+    });
+  }, [value]);
+
+  
 
   return (
     <div className="sale-page">
@@ -122,11 +143,11 @@ const Sales = () => {
         <div className="data-container">
           <div className="data-container__row">
             <div className="data-container__col">
-              <PieChart />
+              <PieChart dataArray={valuePie.data} labelArray={valuePie.label}/>
             </div>
 
             <div className="data-container__col">
-              <LineChart />
+              <LineChart text={"Personal Quota History"} dataArray={valueLine.data} labelArray={valueLine.label} idArray={valueLine.salesid} />
             </div>
           </div>
 
@@ -136,11 +157,13 @@ const Sales = () => {
             </div>
 
             <div className="data-container__col">
-              {console.log(value1.territoryURL)}
+              {/* {console.log(value1[0].territoryURL)} */}
               {/* No image */}
               <img
-                src={value1.territoryURL || "https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg"}
+                src={value1[0]?.territoryURL || "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/10/2f/fe/united-kingdom.jpg?w=700&h=500&s=1"}
                 alt=""
+                width="400" 
+                height="200"
               />
             </div>
           </div>
