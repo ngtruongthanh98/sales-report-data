@@ -28,17 +28,34 @@ const LineChart = (props) => {
     },
   };
 
+  // console.log('AAA', props.idArray)
+
   const data = {
     labels: props.labelArray,
     datasets: props.dataArray.map((data, index) => {
       return {
-        label: props.labelArray[index],
+        label: props.idArray[index],
         // Mock data
-        data: props.labelArray.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
+        // data: props.labelArray.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
+        data: data,
         borderColor: props.borderColorArray[index],
         backgroundColor: props.backgroundColorArray[index],
       };
     }),
+    // datasets: [
+    //   {
+    //     label: props.labelArray,
+    //     data: [1,2,3,4,5,6],
+    //     borderColor: props.borderColorArray,
+    //     backgroundColor: props.backgroundColorArray,
+    //   },
+    //   {
+    //     label: props.labelArray,
+    //     data: [3,4,5,6,7,8],
+    //     borderColor: props.borderColorArray,
+    //     backgroundColor: props.backgroundColorArray,
+    //   }
+    // ]
   };
 
   return <Line options={options} data={data} />;
@@ -46,6 +63,7 @@ const LineChart = (props) => {
 
 LineChart.defaultProps = {
   dataArray: [12, 19, 3, 5, 2, 3],
+  idArray: [12, 19, 3, 5, 2, 3],
   labelArray: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
   borderColorArray: [
     'rgb(255, 99, 132)',

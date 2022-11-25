@@ -15,3 +15,8 @@ export const getOrdChartData = () => {
   return axios.get(url);
 };
 
+export const getQuotaData = () => {
+  const url = 'http://localhost:1323/analysis/salesquota/ord/';
+  return axios.get(url);
+};
+

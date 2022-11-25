@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className="nav">
       <Link to="/" className="site-title">
-        Sales Management Tool
+        SAMA - Sales Management Tool
       </Link>
       <ul>
         <CustomLink to="/sale-person">Sale Person</CustomLink>

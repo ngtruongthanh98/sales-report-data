@@ -3,7 +3,7 @@ import './styles.scss';
 import LineChart from '../../components/Charts/LineChart';
 import VerticalBarChart from '../../components/Charts/VerticalBarChart';
 import PieChart from '../../components/Charts/PieChart';
-import { getChartData, getCusChartData, getOrdChartData } from '../../services/charts';
+import { getChartData, getCusChartData, getOrdChartData, getQuotaData } from '../../services/charts';
 
 const Analysis = () => {
   const [dataPieChart, setDataPieChart] = useState({});
@@ -33,6 +33,14 @@ const Analysis = () => {
     });
   }, []);
 
+
+  useEffect(() => {
+    getQuotaData().then((res) => {
+      console.log(res.data);
+      setDataLineChart(res.data);
+    });
+  }, []);
+
   return (
     <div className="analysis-page">
       <div className="row">
@@ -52,7 +60,7 @@ const Analysis = () => {
 
       <div className="row single">
         <div className="chart-item-50">
-          <LineChart dataArray={dataLineChart.data} labelArray={dataLineChart.label} />
+          <LineChart dataArray={dataLineChart.data} labelArray={dataLineChart.label} idArray={dataLineChart.salesid} />
         </div>
 
         <div className="chart-item-50">
