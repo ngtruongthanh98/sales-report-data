@@ -20,3 +20,8 @@ export const getQuotaData = () => {
   return axios.get(url);
 };
 
+export const getSalesPersonID = (id) => {
+  console.log('CCC', id)
+  const url = 'http://localhost:1323/salesperson/' + id;
+  return axios.get(url);
+}

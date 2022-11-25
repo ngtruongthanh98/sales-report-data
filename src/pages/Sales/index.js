@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.scss';
 import DebounceSelect from '../../components/DebounceSelect';
 import LineChart from '../../components/Charts/LineChart';
 import PieChart from '../../components/Charts/PieChart';
 
 import { Table } from 'antd';
+import { getSalesPersonID } from '../../services/charts';
 
 const columns = [
   {
@@ -47,6 +48,7 @@ const data = [
 
 const Sales = () => {
   const [value, setValue] = React.useState([]);
+  const [value1, setValue1] = React.useState([]);
 
   async function fetchUserList(username) {
     console.log('fetching user', username);
@@ -59,6 +61,14 @@ const Sales = () => {
         }))
       );
   }
+
+  useEffect(() => {
+    getSalesPersonID(4).then((res) => {
+      console.log(res.data);
+      //setDataPieChart(res.data);
+      setValue1([res.data])
+    });
+  }, []);
 
   return (
     <div className="sale-page">
@@ -96,13 +106,14 @@ const Sales = () => {
 
           <div className="data-container__row">
             <div className="data-container__col">
-              <Table columns={columns} dataSource={data} />
+              <Table columns={columns} dataSource={value1} />
             </div>
 
             <div className="data-container__col">
+              {console.log(value1.territoryURL)}
               {/* No image */}
               <img
-                src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg"
+                src={value1.territoryURL || "https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg"}
                 alt=""
               />
             </div>
